@@ -1,0 +1,30 @@
+% planets.pl
+% planet(Name, order_from_sun, has_rings, mean_distance_million_km).
+
+planet(mercury, 1, false, 57.9).
+planet(venus,   2, false, 108.2).
+planet(earth,   3, false, 149.6).
+planet(mars,    4, false, 227.9).
+planet(jupiter, 5, true,  778.3).
+planet(saturn,  6, true,  1427.0).
+planet(uranus,  7, true,  2871.0).
+planet(neptune, 8, true,  4497.1).
+
+% Queries:
+% ?- planet(Name, Order, true, Dist).
+% returns planets with rings.
+%
+% Example predicate: inner planet?
+inner_planet(Name) :-
+    planet(Name, Order, _, _),
+    Order =< 4.
+
+% ?- inner_planet(P).
+% P = mercury ; venus ; earth ; mars.
+QUERY:
+?- inner_planet(P).
+OUTPUT:
+P = mercury ;
+P = venus ;
+P = earth ;
+P = mars.

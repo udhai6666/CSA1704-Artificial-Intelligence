@@ -1,0 +1,18 @@
+% Facts
+can_fly(sparrow).
+can_fly(pigeon).
+can_fly(parrot).
+cannot_fly(penguin).
+cannot_fly(ostrich).
+
+% Rules
+bird_can_fly(Bird) :- can_fly(Bird).
+bird_can_fly(Bird) :- cannot_fly(Bird), write(Bird), write(' cannot fly'), nl, fail.
+
+output:
+?- bird_can_fly(sparrow).
+true.
+
+?- bird_can_fly(penguin).
+penguin cannot fly
+false.

@@ -1,0 +1,7 @@
+diet(diabetes, 'Avoid sugar, eat veggies & whole grains').
+diet(hypertension, 'Low salt, more fruits, avoid fried food').
+diet(obesity, 'High protein, low carbs, regular exercise').
+diet(anemia, 'Iron-rich foods like spinach & red meat').
+diet(heart_disease, 'Low fat, more fish & nuts').
+
+suggest_diet(Disease, Diet) :- diet(Disease, Diet).

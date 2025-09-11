@@ -1,0 +1,12 @@
+% state(MonkeyPos, MonkeyOnBox, BoxPos, HasBanana)
+initial(state(atdoor, onfloor, atwindow, hasnot)).
+goal(state(_, _, _, has)).
+
+move(state(atdoor, onfloor, B, H), state(atmiddle, onfloor, B, H), walk(door,middle)).
+move(state(atwindow, onfloor, B, H), state(atmiddle, onfloor, B, H), walk(window,middle)).
+move(state(P, onfloor, P, H), state(P, onbox, P, H), climb).
+move(state(P, onfloor, P, H), state(P, onfloor, atmiddle, H), push(P,middle)).
+move(state(atmiddle, onbox, atmiddle, hasnot), state(atmiddle, onbox, atmiddle, has), grasp).
+
+canget(S, []) :- goal(S).
+canget(S, [A|Plan]) :- move(S, S1, A), canget(S1, Plan).

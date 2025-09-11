@@ -1,0 +1,45 @@
+% school.pl
+% student(Name, Roll).
+% teacher(Name, Tid).
+% subject(Code, Name).
+% teaches(TeacherTid, SubjectCode).
+% enrolled(StudentRoll, SubjectCode).
+
+student(anna, 101).
+student(bob, 102).
+student(carl, 103).
+
+teacher(ms_smith, t01).
+teacher(mr_john, t02).
+
+subject(s101, math).
+subject(s102, physics).
+subject(s103, chemistry).
+
+teaches(t01, s101).
+teaches(t02, s102).
+teaches(t02, s103).
+
+enrolled(101, s101).
+enrolled(101, s102).
+enrolled(102, s101).
+enrolled(103, s103).
+
+% Query:
+% Which teacher teaches anna?
+teacher_of_student(StudentName, TeacherName) :-
+    student(StudentName, Roll),
+    enrolled(Roll, SubCode),
+    teaches(TeacherTid, SubCode),
+    teacher(TeacherName, TeacherTid).
+
+% Example:
+% ?- teacher_of_student(anna, T).
+% T = ms_smith ;
+QUERY:
+?- teacher_of_student(anna, T).
+OUTPUT:
+T = ms_smith ;
+T = mr_john.
+
+% T = mr_john.

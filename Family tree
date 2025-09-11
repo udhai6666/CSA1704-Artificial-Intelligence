@@ -1,0 +1,15 @@
+% Facts
+parent(john, peter). parent(john, mary).
+parent(anna, peter). parent(anna, mary).
+parent(peter, sam).  parent(lisa, sam).
+parent(mary, sophia). parent(raj, sophia).
+
+male(john). male(peter). male(sam). male(raj).
+female(anna). female(mary). female(lisa). female(sophia).
+
+% Rules
+father(F,C) :- parent(F,C), male(F).
+mother(M,C) :- parent(M,C), female(M).
+sibling(X,Y) :- parent(P,X), parent(P,Y), X \= Y.
+grandfather(GF,GC) :- father(GF,P), parent(P,GC).
+grandmother(GM,GC) :- mother(GM,P), parent(P,GC).

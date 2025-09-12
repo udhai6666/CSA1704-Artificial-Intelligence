@@ -1,0 +1,20 @@
+% --- Facts ---
+fact(rain).
+fact(cloudy).
+
+% --- Rules ---
+if([rain, cloudy], wet_ground).
+if([wet_ground], slippery).
+if([slippery], accident).
+
+% --- Forward Chaining Engine ---
+forward :- new_fact(X), assert(fact(X)), write('Derived: '), writeln(X), fail.
+forward.
+
+new_fact(Z) :-
+    if(Conds, Z),
+    \+ fact(Z),
+    all_true(Conds).
+
+all_true([]).
+all_true([H|T]) :- fact(H), all_true(T).

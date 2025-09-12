@@ -1,0 +1,17 @@
+% --- Facts ---
+fact(rain).
+fact(cloudy).
+
+% --- Rules ---
+if(wet_ground, [rain, cloudy]).
+if(slippery, [wet_ground]).
+if(accident, [slippery]).
+
+% --- Backward Chaining Engine ---
+backward(G) :- fact(G).
+backward(G) :-
+    if(G, Conds),
+    prove_all(Conds).
+
+prove_all([]).
+prove_all([H|T]) :- backward(H), prove_all(T).

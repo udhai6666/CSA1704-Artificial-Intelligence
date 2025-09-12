@@ -1,0 +1,5 @@
+% --- Pattern Matching ---
+match([], []).                         % empty with empty
+match([X|T1], [X|T2]) :- match(T1,T2). % exact match
+match([_|T1], T2) :- match(T1, T2).    % skip element in first
+match(T1, [_|T2]) :- match(T1, T2).    % skip element in second

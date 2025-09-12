@@ -1,0 +1,19 @@
+% --- Knowledge Base ---
+symptom(fever, flu).
+symptom(cough, flu).
+symptom(headache, flu).
+symptom(sneezing, cold).
+symptom(runny_nose, cold).
+symptom(sore_throat, cold).
+symptom(chest_pain, pneumonia).
+symptom(fever, pneumonia).
+symptom(cough, pneumonia).
+
+% --- Diagnosis Rule ---
+diagnose(Disease) :-
+    symptom(S, Disease),
+    write('Do you have '), write(S), write('? (yes/no): '),
+    read(yes),
+    fail.
+diagnose(Disease) :-
+    write('You may have '), write(Disease), nl.
